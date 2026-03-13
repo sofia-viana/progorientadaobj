@@ -16,5 +16,15 @@ public class PessoaFisica extends Pessoa {
     public int getIdade() {
         return super.getIdade();
     }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+    public void setIdade(int idade) {
+        super.setIdade(idade);
+    }
+    
     
 }
