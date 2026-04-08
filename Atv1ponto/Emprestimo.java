@@ -1,39 +1,38 @@
 package Atv1ponto;
-
 public class Emprestimo implements Exibivel, CalculaMulta {
 
     private int id;
     private Usuario usuario;
     private Material material;
+
     private int diaEmprestimo;
     private int diaPrevisto;
     private int diaDevolucao;
 
-    public Emprestimo(int id, Usuario usuario, Material material, int diaAtual) {
+    public Emprestimo(int id, Usuario usuario, Material material) {
         this.id = id;
         this.usuario = usuario;
         this.material = material;
-        this.diaEmprestimo = diaAtual;
-        this.diaPrevisto = diaAtual + usuario.getPrazo();
+
+        this.diaEmprestimo = 0; 
+        this.diaPrevisto = usuario.getPrazo();
         this.diaDevolucao = -1;
         material.emprestar();
     }
-    public Usuario getUsuario() {
-    return usuario;
-}
 
-    public void registrarDevolucao(int diaAtual) {
+    public void devolver(int diaAtual) {
         if (diaDevolucao != -1) {
-            System.out.println("Já foi devolvido!");
+            System.out.println("Erro: já devolvido!");
             return;
         }
-
-        diaDevolucao = diaAtual;
+        this.diaDevolucao = diaAtual;
         material.devolver();
     }
+
     public boolean finalizado() {
         return diaDevolucao != -1;
     }
+
     public int diasAtraso() {
         if (!finalizado()) return 0;
 
@@ -48,8 +47,11 @@ public class Emprestimo implements Exibivel, CalculaMulta {
     }
     public String exibirResumo() {
         return "Emprestimo " + id +
-               " | Usuario: " + usuario.exibirResumo() +
-               " | Material: " + material.exibirResumo() +
+               " | Usuario: " + usuario.nome +
+               " | Material: " + material.titulo +
                " | Multa: R$ " + calcularMulta();
+    }
+    public Usuario getUsuario() {
+        return usuario;
     }
 }

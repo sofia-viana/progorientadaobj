@@ -51,6 +51,6 @@ public class Biblioteca {
             System.out.println("Limite Atingido");
             return;
         }
-        emprestimos.add(new Emprestimo(id, u, m, 1));
+        emprestimos.add(new Emprestimo(id, u, m));
     }
 }
