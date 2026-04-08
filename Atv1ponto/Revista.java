@@ -1,8 +1,13 @@
 package Atv1ponto;
 
 public class Revista extends Material {
-    public Revista(int codigo, String nome, int quantidade){
+    protected int edicao;
+    public Revista(int codigo, String nome, int quantidade, int edicao){
         super(codigo, nome, quantidade);
+        this.edicao = edicao;
+    }
+    public int getEdicao(){
+        return edicao;
     }
     
 }
